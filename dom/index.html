@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-title" content="Foundation Example">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no, address=no">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="author" contect="jectychen,jectychen@gmail.com" />
+    <title>挑战最坑爹验证码</title>
+    <link rel="stylesheet" href="build/css/app.css?v=12171507">
+    <style>
+    /* 横屏 */
+    @media only screen and (orientation : landscape){
+        
+        .conMsg,.container.show {display: none;}
+        .landscapeText{display: block;}
+
+    }
+    </style>
+</head>
+<body>
+    <div class="landscapeText">请竖屏访问页面</div>
+    <div class="conMsg" id="conMsg">挑战最坑爹验证码</div>
+    <div class="loading" id="loading">
+        <div class="loadingGif" id="loadingGif"></div>
+        <div class="loadingBar">
+            <i></i>
+            <span id="loadingText"></span>
+        </div>
+        <div class="mh-logo"></div>
+    </div>
+    <div class="container">
+        <div class="main">
+            <div class="process" id="process">
+                <span class="step">第1/10关</span>
+                <span class="class">级别：幼儿园</span>
+            </div>
+            <div class="wrap" id="gameContainer">
+                <div class="setion g-show" data-total="2">
+                    <div class="title">请点击下图中
+                        <span class="strong">所有的</span>
+                        <img src="build/images/1/swimming.jpg" alt="" class="titleImg">
+                    </div>
+                    <div class="yzm">
+                        <img src="build/images/1/yzm01.jpg" class="backimg" style=" width:100%;">
+                        <ul class="clearfix">
+                            <li data-answer="1"></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li data-answer="1"></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="setion" data-total="2">
+                    <div class="title">请点击下图中
+                        <span class="strong">所有的</span>
+                        <img src="build/images/2/juhua.jpg"  class="titleImg" alt="">
+                    </div>
+                    <div class="yzm">
+                        <img src="build/images/2/yzm02.jpg" class="backimg" style=" width:100%;">
+                        <ul class="clearfix">
+                            <li></li>
+                            <li data-answer="1"></li>
+                            <li></li>
+                            <li data-answer="1"></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="setion" data-total="2">
+                    <div class="title">请点击下图中
+                        <span class="strong">所有的</span>
+                        <img src="build/images/3/teacher.jpg"  class="titleImg imgTeacher" alt="">
+                    </div>
+                    <div class="yzm">
+                        <img src="build/images/3/yzm03.jpg" class="backimg" style=" width:100%;">
+                        <ul class="clearfix">
+                            <li data-answer="1"></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li data-answer="1"></li>
+                            <li data-answer="1"></li>
+                            <li></li>
+                            <li></li>
+                         </ul>
+                    </div>
+                </div>
+                <div class="setion" data-total="2">
+                    <div class="title">请点击下图中
+                        <span class="strong">所有的</span>
+                        <img src="build/images/4/guo.jpg"  class="titleImg" alt="">
+                    </div>
+                    <div class="yzm">
+                        <img src="build/images/4/yzm04.jpg" class="backimg" style=" width:100%;">
+                        <ul class="clearfix">
+                            <li></li>
+                            <li data-answer="1"></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li data-answer="1"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="setion" data-total="2">
+                    <div class="title">请点击下图中
+                        <span class="strong">所有的</span>
+                        <img src="build/images/5/youyu.jpg"  class="titleImg" alt="">
+                    </div>
+                    <div class="yzm">
+                        <img src="build/images/5/yzm05.jpg" class="backimg" style=" width:100%;">
+                        <ul class="clearfix">
+                            <li></li>
+                            <li></li>
+                            <li data-answer="1"></li>
+                            <li></li>
+                            <li></li>
+                            <li data-answer="1"></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="setion" data-total="1">
+                    <div class="title">请点击下图中
+                        <span class="strong">所有的</span>
+                        <img src="build/images/6/newzeland.jpg" class="titleImg imgNewZ" alt="">
+                    </div>
+                    <div class="yzm">
+                        <img src="build/images/6/yzm06.jpg" class="backimg" style=" width:100%;">
+                        <ul class="clearfix">
+                            <li data-answer="1"></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="setion" data-total="3">
+                    <div class="title">请点击下图中
+                        <span class="strong">所有的</span>
+                        <img src="build/images/7/beautyboy.jpg" width="78" class="titleImg imgBeauty" alt="">
+                    </div>
+                    <div class="yzm">
+                        <img src="build/images/7/yzm07.jpg" class="backimg" style=" width:100%;">
+                        <ul class="clearfix">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li data-answer="1"></li>
+                            <li></li>
+                            <li data-answer="1"></li>
+                            <li data-answer="1"></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="setion" data-total="3">
+                    <div class="title">请点击下图中
+                        <span class="strong">所有的</span>
+                        <img src="build/images/8/title.png"  class="titleImg" alt="">
+                    </div>
+                    <div class="yzm">
+                        <img src="build/images/8/yzm08.jpg" class="backimg" style=" width:100%;">
+                        <ul class="clearfix">
+                            <li data-answer="1"></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li data-answer="1"></li>
+                            <li data-answer="1"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="setion" data-total="2">
+                    <div class="title">请点击下图中
+                        <span class="strong">所有的</span>
+                        <img src="build/images/9/hashiqi.jpg"  class="titleImg" alt="">
+                    </div>
+                    <div class="yzm">
+                        <img src="build/images/9/yzm09.jpg" class="backimg" style=" width:100%;">
+                        <ul class="clearfix">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li data-answer="1"></li>
+                            <li></li>
+                            <li data-answer="1"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="setion" data-total="1">
+                    <div class="title">请点击下图中
+                        <span class="strong">所有的</span>
+                        <img src="build/images/10/wanghammer.jpg" width="80" class="titleImg" alt="">
+                    </div>
+                    <div class="yzm">
+                        <img src="build/images/10/yzm10.jpg" class="backimg" style=" width:100%;">
+                        <ul class="clearfix">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li data-answer="1"></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="btns clearfix">
+                <div><i></i><a href="javascript:;" class="y-btn remindBtn" id="remindBtn">不懂点我<img src="build/images/tip_face.png" class="tip-face" alt=""></a></div>
+                <div><i></i><a href="javascript:;" class="y-btn" id="sureBtn">确定</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="q-tips-cover"></div>
+    <div class="q-tips q-tips-remind">
+        <h3 class="q-tips-title">问题提示</h3>
+        <div class="q-face01"></div>
+        <div class="q-text">C罩杯是指上下胸围之差（乳尖与乳房最下端的差值）为左右15cm的女性罩杯。国内明星中张柏芝、林志玲、林熙蕾均为C罩杯。</div>
+        <a href="javascript:;" class="q-btn J-closeBtn">知道了</a>
+    </div>
+    <div class="q-tips q-tips-success">
+        <h3 class="q-tips-title">全部通关</h3>
+        <div class="q-face02"></div>
+        <div class="q-text">
+            <div class="q-sponsor">刷票...已经没有验证码能拦住你了...在刷票界...你独孤求败...</div>
+全国只有1%的人能通过10关！您通过了第10关，击败了全国99%的购票者，您已被12306归类为“急需逮捕的黄牛用户”...</div>
+        <a href="javascript:;" class="q-btn q-btn-spec J-shareBtn">炫耀一下</a>
+        <div class="focusPanel clearfix">
+            <div class="f-main">
+                <img src="build/images/erweima.jpg" alt="" class="fl f-erweima">
+                <div class="fl f-text">
+                    <div class="f-t-top">关注 有米金融 送您7天
+    牛股快报。<span>短线暴涨精选股</span>，交易日9点不见不散。</div>
+                    <div class="f-t-bottom">长按二维码识别</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="q-tips q-tips-fail">
+        <div class="q-failMain">
+            <h3 class="q-tips-title">您的票被抢走了</h3>
+            <div class="q-face03"></div>
+            <div class="q-text">
+                <div class="q-sponsor">以您这智商，吃屎都难吃到热的</div>您通过了第1关，击败了全国0%的购票者，您已被12306评为评“幼儿园级刷票师”!
+            </div>
+            <div class="q-btn-wrap clearfix">
+                <a href="javascript:;" class="q-btn J-shareBtn">炫耀一下</a>
+                <a href="javascript:;" class="q-btn q-btn2 J-resetBtn">我不服</a>
+            </div>
+        </div>
+        <div class="focusPanel clearfix">
+            <div class="f-main">
+                <img src="build/images/erweima.jpg" alt="" class="fl f-erweima">
+                <div class="fl f-text">
+                    <div class="f-t-top">关注 有米金融 送您7天
+    牛股快报。<span>短线暴涨精选股</span>，交易日9点不见不散。</div>
+                    <div class="f-t-bottom">长按二维码识别</div>
+                </div>
+            </div>
+        </div>
+        <div class="yzm-loading" id="yzm-loading">验证码复活中...</div>
+    </div>
+    <div class="sharePanel">
+        <div class="shareCover"></div>
+        <img src="build/images/share_img.png" class="shareImg">
+    </div>
+    
+    <script src="build/js/app.min.js?=121811"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+      /*wx.config({
+        //debug: true,
+        appId: '{$signPackage.appId}',
+        timestamp: {$signPackage.timestamp},
+        nonceStr: '{$signPackage.nonceStr}',
+        signature: '{$signPackage.signature}',
+        jsApiList: [
+          // 所有要调用的 API 都要加到这个列表中
+            'checkJsApi',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareQZone',
+            'onMenuShareWeibo'
+        ]
+      });
+
+      window.wxInfo = {
+        title : '挑战最坑爹验证码，我通过了第0关，等你来挑战！',
+        desc : '挑战最坑爹验证码，我通过了第0关，等你来挑战！',
+        link : "{:U('index@h5.mihui.com')}",
+        imgUrl : 'http://h5.mihui.combuild/images/share_icon.jpg'
+      }
+
+      wx.ready(function () {
+        //调用分享API
+        shareFunc();
+      }); 
+
+      //分享配置
+      function shareFunc() {
+        //分享给朋友
+        wx.onMenuShareAppMessage({
+          title: window.wxInfo.title,
+          desc: window.wxInfo.desc,
+          link: window.wxInfo.link,
+          imgUrl: window.wxInfo.imgUrl,
+          trigger: function (res) {
+            //alert('用户点击发送给朋友');
+          },
+          success: function (res) {
+            !!(window.nowPIndex+1) && sendData({ chapter : window.nowPIndex+1 , action : 'ShareAppMessage'});
+          },
+          cancel: function (res) {
+            //alert('已取消');
+          },
+          fail: function (res) {
+            //alert(JSON.stringify(res));
+          }
+        });
+
+        //分享到朋友圈
+        wx.onMenuShareTimeline({
+          title: window.wxInfo.title,
+          link: window.wxInfo.link,
+          imgUrl: window.wxInfo.imgUrl,
+          trigger: function (res) {
+            //alert('用户点击分享到朋友圈');
+          },
+          success: function (res) {
+            !!(window.nowPIndex+1) && sendData({ chapter : window.nowPIndex+1 , action : 'ShareTimeline'});
+          },
+          cancel: function (res) {
+            //alert('已取消');
+          },
+          fail: function (res) {
+            //alert(JSON.stringify(res));
+          }
+        });
+
+        //分享到QQ
+        wx.onMenuShareQQ({
+          title: window.wxInfo.title,
+          desc: window.wxInfo.desc,
+          link: window.wxInfo.link,
+          imgUrl: wxInfo.imgUrl,
+          trigger: function (res) {
+            //alert('用户点击分享到QQ');
+          },
+          complete: function (res) {
+            //alert(JSON.stringify(res));
+          },
+          success: function (res) {
+            !!(window.nowPIndex+1) && sendData({ chapter : window.nowPIndex+1 , action : 'ShareQQ'});
+          },
+          cancel: function (res) {
+            //alert('已取消');
+          },
+          fail: function (res) {
+            //alert(JSON.stringify(res));
+          }
+        });
+
+        //分享到QQ空间
+        wx.onMenuShareQZone({
+            title: window.wxInfo.title, // 分享标题
+            desc: window.wxInfo.desc, // 分享描述
+            link: window.wxInfo.link, // 分享链接
+            imgUrl: window.wxInfo.imgUrl, // 分享图标
+            success: function () { 
+               !!(window.nowPIndex+1) && sendData({ chapter : window.nowPIndex+1 , action : 'ShareQZone'});
+            },
+            cancel: function () { 
+                // 用户取消分享后执行的回调函数
+            }
+        });
+      
+        //分享到微博
+        wx.onMenuShareWeibo({
+          title: window.wxInfo.title,
+          desc: window.wxInfo.desc,
+          link: window.wxInfo.link,
+          imgUrl: window.wxInfo.imgUrl,
+          trigger: function (res) {
+            //alert('用户点击分享到微博');
+          },
+          complete: function (res) {
+            //alert(JSON.stringify(res));
+          },
+          success: function (res) {
+            !!(window.nowPIndex+1) && sendData({ chapter : window.nowPIndex+1 , action : 'ShareWeibo'});
+          },
+          cancel: function (res) {
+            //alert('已取消');
+          },
+          fail: function (res) {
+            //alert(JSON.stringify(res));
+          }
+        });
+      }
+
+    //发送统计数据方法
+    function sendData( data ) {
+        $.ajax({
+            type : 'GET',
+            url : "{:U('statistics')}",
+            data : data,
+            dataType : 'json'
+        })
+    }*/
+    </script>
+    <!-- 统计代码 -->
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256977378'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "w.cnzz.com/q_stat.php%3Fid%3D1256977378' type='text/javascript'%3E%3C/script%3E"));</script>
+    <!-- 统计代码 -->
+</body>
+</html>
