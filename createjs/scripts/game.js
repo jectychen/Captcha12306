@@ -1,7 +1,6 @@
 var Game = (function() {
 
-    var 
-        queue,
+    var queue,
 
         winW = window.innerWidth,
 
