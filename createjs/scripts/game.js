@@ -11,7 +11,7 @@ var Game = (function() {
             }
         },
 
-        resources=[
+        resources = [
             {id: 'yzm_bg', src:'build/images/yzm_bg.jpg'},
             {id: 'erweima', src:'build/images/erweima.jpg'},
             {id: 'fail', src:'build/images/fail.png'},
