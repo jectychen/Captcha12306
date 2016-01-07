@@ -11,8 +11,8 @@
     <meta name="screen-orientation" content="portrait">
     <meta name="x5-orientation" content="portrait">
     <meta name="x5-fullscreen" content="true">
-    <meta name="browsermode" content="application">
-    <meta name="x5-page-mode" content="app">
+    <!-- <meta name="browsermode" content="application"> -->
+    <!-- <meta name="x5-page-mode" content="app"> -->
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="author" contect="jectychen,jectychen@gmail.com" />
     <title>挑战最坑爹验证码</title>
@@ -26,7 +26,13 @@
             <span id="loadingText"></span>
         </div>
     </div>
-    <canvas id="captcha12306" width="640" height="960"></canvas>
-    <script src="build/js/game.min.js"></script>
+    <canvas id="captcha12306" width="320" height="568"></canvas>
+    <script>
+    var version = Math.round(Math.random()*100+100),
+        script = document.createElement('script');
+    script.src = 'build/js/game.min.js?ver='+version;
+    document.body.appendChild(script);
+    </script>
+    <!-- <script src="build/js/game.min.js"></script> -->
 </body>
 </html>

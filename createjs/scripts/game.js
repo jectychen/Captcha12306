@@ -1,8 +1,18 @@
 var Game = (function() {
 
-    var queue,
+    var resources,
+
+        stage,
+
+        gameCont,
+
+        canW,
+
+        pageIndex = 0,
 
         winW = window.innerWidth,
+
+        cjs = createjs,
 
         all = {
             getEl : function(obj,bool) {
@@ -11,8 +21,9 @@ var Game = (function() {
             }
         },
 
-        resources = [
+        manifest = [
             {id: 'yzm_bg', src:'build/images/yzm_bg.jpg'},
+            {id: 'game_bg', src:'build/images/game_bg.png'},
             {id: 'erweima', src:'build/images/erweima.jpg'},
             {id: 'fail', src:'build/images/fail.png'},
             {id: 'handprint', src:'build/images/handprint.png'},
@@ -45,14 +56,17 @@ var Game = (function() {
             {id: 'yzm8', src:'build/images/8/yzm08.jpg'},
             {id: 'yzm9', src:'build/images/9/yzm09.jpg'},
             {id: 'yzm10', src:'build/images/10/yzm10.jpg'}
-        ];
+        ],
+
+        arr = ['swimming','juhua','title','guo','youyu','newzeland','buietyboy','teacher','hashiqi','wanghammer'];
 
     init();
 
     function init() {
         // console.log(createjs)
         removeDefault();
-        loadResources();
+        loadmanifest();
+        
     }
 
     function removeDefault() {
@@ -62,11 +76,11 @@ var Game = (function() {
         });
     }
 
-    function loadResources() {
-        queue = new createjs.LoadQueue(true);
-        queue.on('complete', loadComplete, this);
-        queue.on('progress', loadProgress, this);
-        queue.loadManifest(resources);
+    function loadmanifest() {
+        resources = new cjs.LoadQueue(true);
+        resources.on('complete', loadComplete, this);
+        resources.on('progress', loadProgress, this);
+        resources.loadManifest(manifest);
     }
 
     //加载成功
@@ -84,6 +98,7 @@ var Game = (function() {
 
     // 加载进度条
     function loading(process){
+
         var loading = all.getEl('#loading')[0],
             loadRate = all.getEl('#loadingText')[0],
             loadImg = getByClass(loading, 'loadingGif')[0],
@@ -98,13 +113,67 @@ var Game = (function() {
 
     // 游戏开始
     function gameStart() {
-        var stage = new createjs.Stage('captcha12306'),
-            yzm_bg = new createjs.Bitmap(getImg('yzm_bg'));
-            yzm1 = new createjs.Bitmap(getImg('yzm1'));
+        stage = new cjs.Stage('captcha12306');
+        var canvas = all.getEl('#captcha12306')[0],
+            designW = 640,
+            designH = 1136;
+            winW = document.documentElement.clientWidth,
+            winH = document.documentElement.clientHeight,
+            scale = winW / designW;
 
-        console.log(yzm_bg)
-        stage.addChild(yzm_bg, yzm1);
+        canvas.width = designW;
+        canvas.height = winH / scale;
+        canvas.style.width = winW + 'px';
+        canvas.style.height = winH + 'px';
+
+        canW = stage.canvas.width;
+
+        drawIndex();
+    }
+
+    function drawIndex() {
+        gameCont = new cjs.Container();
+        var yzm_bg = new cjs.Bitmap(getImg('yzm_bg')),
+            title = new cjs.Text('挑战最坑爹验证码', 'bold 36px Microsoft Yahei', '#ffb600'),
+            stepTxt = new cjs.Text('第1/10关', 'bold 30px Microsoft Yahei', '#fff'),
+            classTxt = new cjs.Text('级别:幼儿园', 'bold 30px Microsoft Yahei', '#fff'),
+            gameBg = new cjs.Bitmap(getImg('game_bg'));
+           
+
+        title.textAlign = 'center';
+        title.x = canW / 2;
+        title.y = 95;
+
+        stepTxt.setBounds(0, 0, 257, 30);
+        classTxt.setBounds(0, 0, 257, 30);
+        classTxt.x = 514;
+        classTxt.textAlign = 'right';
+
+        gameBg.x = 0;
+        gameBg.y = 54;
+
+        gameCont.addChild(stepTxt, classTxt, gameBg);
+        gameCont.setBounds(0, 0, 514, 486);
+        gameCont.x = (canW - gameCont.getBounds().width) / 2;
+        gameCont.y = 200;
+
+        stage.addChild(yzm_bg, title, gameCont);
         stage.update(); 
+
+        setStep();
+    }
+
+    function setStep() {
+        var stepImg, stepTitle;
+        stepTitle = new cjs.Bitmap(getImg(arr[pageIndex]));
+        stepImg = new cjs.Bitmap(getImg('yzm'+(pageIndex+1)));
+
+        stepTitle.x = 232;
+        stepTitle.y = 62;
+        stepImg.x = 34;
+        stepImg.y = 127;
+        gameCont.addChild(stepTitle, stepImg);
+        stage.update();
     }
 
     // 通过class获取对象
@@ -120,11 +189,11 @@ var Game = (function() {
             }
         }
 
-        return arr;
+        return arr; 
     }
 
     function getImg(id) {
-        return queue.getResult(id);
+        return resources.getResult(id);
     }
 
     function setImgObj(image) {
