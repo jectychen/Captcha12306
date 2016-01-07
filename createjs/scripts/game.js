@@ -99,14 +99,12 @@ var Game = (function() {
     // 游戏开始
     function gameStart() {
         var stage = new createjs.Stage('captcha12306'),
-            image = new createjs.Bitmap(getImg('swimming'));
-        stage.addChild(image);
-        createjs.Ticker.addEventListener('tick',handleTick);
+            yzm_bg = new createjs.Bitmap(getImg('yzm_bg'));
+            yzm1 = new createjs.Bitmap(getImg('yzm1'));
 
-        function handleTick() {
-            image.x += 1;
-            stage.update();    
-        }
+        console.log(yzm_bg)
+        stage.addChild(yzm_bg, yzm1);
+        stage.update(); 
     }
 
     // 通过class获取对象
@@ -127,6 +125,11 @@ var Game = (function() {
 
     function getImg(id) {
         return queue.getResult(id);
+    }
+
+    function setImgObj(image) {
+        // var img = new createjs.Bitmap(getImg(image)),
+
     }
 
 
