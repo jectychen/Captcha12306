@@ -34,6 +34,8 @@ var Game = (function() {
             {id: 'success', src:'build/images/success.png'},
             {id: 'success_bg', src:'build/images/success_bg.png'},
             {id: 'train', src:'build/images/train.png'},
+            {id: 'tipsBtn', src:'build/images/tips_btn.png'},
+            {id: 'sureBtn', src:'build/images/sure_btn.png'},
 
             {id: 'swimming', src:'build/images/1/swimming.jpg'},
             {id: 'juhua', src:'build/images/2/juhua.jpg'},
@@ -137,8 +139,9 @@ var Game = (function() {
             title = new cjs.Text('挑战最坑爹验证码', 'bold 36px Microsoft Yahei', '#ffb600'),
             stepTxt = new cjs.Text('第1/10关', 'bold 30px Microsoft Yahei', '#fff'),
             classTxt = new cjs.Text('级别:幼儿园', 'bold 30px Microsoft Yahei', '#fff'),
-            gameBg = new cjs.Bitmap(getImg('game_bg'));
-           
+            gameBg = new cjs.Bitmap(getImg('game_bg')),
+            tipsBtn = new cjs.Bitmap(getImg('tipsBtn')),
+            sureBtn = new cjs.Bitmap(getImg('sureBtn'));
 
         title.textAlign = 'center';
         title.x = canW / 2;
@@ -149,18 +152,22 @@ var Game = (function() {
         classTxt.x = 514;
         classTxt.textAlign = 'right';
 
-        gameBg.x = 0;
         gameBg.y = 54;
 
-        gameCont.addChild(stepTxt, classTxt, gameBg);
+        tipsBtn.x = 0;
+        tipsBtn.y = 395;
+
+        sureBtn.x = 274;
+        sureBtn.y = 395;
+
+        gameCont.addChild(stepTxt, classTxt, gameBg, tipsBtn, sureBtn);
         gameCont.setBounds(0, 0, 514, 486);
         gameCont.x = (canW - gameCont.getBounds().width) / 2;
         gameCont.y = 200;
 
         stage.addChild(yzm_bg, title, gameCont);
-        stage.update(); 
-
         setStep();
+        stage.update(); 
     }
 
     function setStep() {
@@ -173,7 +180,15 @@ var Game = (function() {
         stepImg.x = 34;
         stepImg.y = 127;
         gameCont.addChild(stepTitle, stepImg);
-        stage.update();
+        stepImg.addEventListener('click', handleClick);
+        // stage.update();
+    }
+
+    function handleClick(e) {
+        console.log(e)
+        var touchX = e.stageX,
+            touchY = e.stageY;
+        console.log(touchX,touchY);
     }
 
     // 通过class获取对象
