@@ -170,8 +170,8 @@ var Game = (function() {
         gameCont.x = (canW - gameCont.getBounds().width) / 2;
         gameCont.y = 200;
 
-        stage.addChild(yzm_bg, title, gameCont);
         setStep();
+        stage.addChild(yzm_bg, title, gameCont);
         stage.update(); 
     }
 
@@ -193,7 +193,7 @@ var Game = (function() {
             touchY = e.stageY;
         console.log(touchX,touchY);
     }
-    
+
     function getImg(id) {
         return resources.getResult(id);
     }
