@@ -28,7 +28,7 @@ gulp.task('minifyjs', function() {
         .pipe(concat('game.js'))    //合并所有js到game.js
         .pipe(gulp.dest('build/js'))       //输出到文件夹
         .pipe(rename({suffix: '.min'}))   //rename压缩后的文件名
-        // .pipe(uglify())    //压缩
+        .pipe(uglify())    //压缩
         .pipe(gulp.dest('build/js'));  //输出
 });
 
