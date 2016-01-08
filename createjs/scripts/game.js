@@ -10,6 +10,8 @@ var Game = (function() {
 
         pageIndex = 0,
 
+        body = document.documentElement.body,
+
         winW = window.innerWidth,
 
         cjs = createjs,
@@ -193,6 +195,7 @@ var Game = (function() {
 
     // 通过class获取对象
     function getByClass(obj,cls) {
+        obj = 'undefined' === typeof obj ? body : obj;
         var child = obj.children,
             len = child.length,
             i = 0,
@@ -209,11 +212,6 @@ var Game = (function() {
 
     function getImg(id) {
         return resources.getResult(id);
-    }
-
-    function setImgObj(image) {
-        // var img = new createjs.Bitmap(getImg(image)),
-
     }
 
 
