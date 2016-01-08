@@ -1,28 +1,33 @@
 var Game = (function() {
 
     var resources,
-
         stage,
-
         gameCont,
-
         canW,
-
         pageIndex = 0,
-
         body = document.documentElement.body,
-
         winW = window.innerWidth,
-
         cjs = createjs,
-
         all = {
-            getEl : function(obj,bool) {
+            getEl : function(obj, bool) {
                 return bool ? document.querySelector(obj)
                         : document.querySelectorAll(obj);
+            },
+            getByClass : function(obj, cls) {
+                obj = 'undefined' === typeof obj ? body : obj;
+                var child = obj.children,
+                    len = child.length,
+                    i = 0,
+                    arr = [];
+
+                for(; i < len; i++) {
+                    if(child[i].className.indexOf(cls) >= 0) {
+                        arr.push(child[i]);
+                    }
+                }
+                return arr; 
             }
         },
-
         manifest = [
             {id: 'yzm_bg', src:'build/images/yzm_bg.jpg'},
             {id: 'game_bg', src:'build/images/game_bg.png'},
@@ -61,7 +66,6 @@ var Game = (function() {
             {id: 'yzm9', src:'build/images/9/yzm09.jpg'},
             {id: 'yzm10', src:'build/images/10/yzm10.jpg'}
         ],
-
         arr = ['swimming','juhua','title','guo','youyu','newzeland','buietyboy','teacher','hashiqi','wanghammer'];
 
     init();
@@ -105,8 +109,8 @@ var Game = (function() {
 
         var loading = all.getEl('#loading')[0],
             loadRate = all.getEl('#loadingText')[0],
-            loadImg = getByClass(loading, 'loadingGif')[0],
-            loadLine = getByClass(loading, 'loadingBar')[0].children[0],
+            loadImg = all.getByClass(loading, 'loadingGif')[0],
+            loadLine = all.getByClass(loading, 'loadingBar')[0].children[0],
             width = winW * process;
 
         loadRate.innerHTML = Math.round(process*100) + ' %';
@@ -192,24 +196,6 @@ var Game = (function() {
             touchY = e.stageY;
         console.log(touchX,touchY);
     }
-
-    // 通过class获取对象
-    function getByClass(obj,cls) {
-        obj = 'undefined' === typeof obj ? body : obj;
-        var child = obj.children,
-            len = child.length,
-            i = 0,
-            arr = [];
-
-        for(; i < len; i++) {
-            if(child[i].className.indexOf(cls) >= 0) {
-                arr.push(child[i]);
-            }
-        }
-
-        return arr; 
-    }
-
     function getImg(id) {
         return resources.getResult(id);
     }
