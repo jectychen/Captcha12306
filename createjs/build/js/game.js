@@ -32,8 +32,9 @@ var Game = (function() {
         gameCont,
         canW,
         pageIndex = 0,
-        body = document.documentElement.body,
-        winW = window.innerWidth,
+        docE = document.documentElement,
+        body = docE.body,
+        innerW = window.innerWidth,
         cjs = createjs,
         all = {
             getEl : function(obj, bool) {
@@ -137,7 +138,7 @@ var Game = (function() {
             loadRate = all.getEl('#loadingText')[0],
             loadImg = all.getByClass(loading, 'loadingGif')[0],
             loadLine = all.getByClass(loading, 'loadingBar')[0].children[0],
-            width = winW * process;
+            width = innerW * process;
 
         loadRate.innerHTML = Math.round(process*100) + ' %';
         loadRate.style.webkitTransform = 'translate3d('+width+'px,0,0)';
@@ -151,8 +152,8 @@ var Game = (function() {
         var canvas = all.getEl('#captcha12306')[0],
             designW = 640,
             designH = 1136;
-            winW = document.documentElement.clientWidth,
-            winH = document.documentElement.clientHeight,
+            winW = docE.clientWidth,
+            winH = docE.clientHeight,
             scale = winW / designW;
 
         canvas.width = designW;
