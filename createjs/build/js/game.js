@@ -33,7 +33,7 @@ var Game = (function() {
         canW,
         pageIndex = 0,
         docE = document.documentElement,
-        body = docE.body,
+        body = document.body,
         innerW = window.innerWidth,
         cjs = createjs,
         all = {
