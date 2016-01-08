@@ -28,6 +28,7 @@ var Game = (function() {
                 return arr; 
             }
         },
+        arr = ['swimming','juhua','title','guo','youyu','newzeland','buietyboy','teacher','hashiqi','wanghammer'],
         manifest = [
             {id: 'yzm_bg', src:'build/images/yzm_bg.jpg'},
             {id: 'game_bg', src:'build/images/game_bg.png'},
@@ -65,13 +66,11 @@ var Game = (function() {
             {id: 'yzm8', src:'build/images/8/yzm08.jpg'},
             {id: 'yzm9', src:'build/images/9/yzm09.jpg'},
             {id: 'yzm10', src:'build/images/10/yzm10.jpg'}
-        ],
-        arr = ['swimming','juhua','title','guo','youyu','newzeland','buietyboy','teacher','hashiqi','wanghammer'];
+        ];
 
     init();
 
     function init() {
-        // console.log(createjs)
         removeDefault();
         loadmanifest();
         
@@ -187,18 +186,16 @@ var Game = (function() {
         stepImg.y = 127;
         gameCont.addChild(stepTitle, stepImg);
         stepImg.addEventListener('click', handleClick);
-        // stage.update();
     }
 
     function handleClick(e) {
-        console.log(e)
         var touchX = e.stageX,
             touchY = e.stageY;
         console.log(touchX,touchY);
     }
+    
     function getImg(id) {
         return resources.getResult(id);
     }
-
 
 }());
